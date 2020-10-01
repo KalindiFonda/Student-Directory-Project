@@ -23,6 +23,15 @@ def print_student_list(students)
   puts "Overall, we have #{students.count} students"
 end
 
+def print_last_name(students)
+  last_names = []
+  students.each do |student|
+    last_name = student[:name].split(" ")[-1]
+    last_names.push(last_name)
+  end
+  puts last_names
+end
+
 def add_student(students)
   puts "Enter name of student:"
   name = gets.chomp
@@ -31,23 +40,32 @@ def add_student(students)
   students.push({name: name, cohort: cohort})
 end
 
+
 #Main program loop
 while true
   puts "1. View student list"
   puts "2. Add new student"
   puts "3. Delete student"
   puts "4. Edit student details"
-  puts "5. Quit"
+  puts "8. Get student last names"
+  puts "9. Quit"
   input = gets.chomp.to_i
-  if input == 5
+  case input
+  when 9
     break
-  elsif input == 1
+  when 1
+    print_header
     print_student_list(students)
-  elsif input == 2
+    print_footer(students)
+  when 2
     add_student(students)
-  elsif input == 3
+  when 3
     delete_student(students)
-  elsif input == 4
+  when 4
     edit_student(students)
+  when 8
+    print_last_name(students)
+  else
+    puts "Try again"
   end
 end
