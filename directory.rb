@@ -29,7 +29,7 @@ def print_footer(students)
 end
 
 
-def last_name(students)
+def print_last_name(students)
   last_names = []
   students.each do |student|
     last_name = student[:name].split(" ")[-1]
