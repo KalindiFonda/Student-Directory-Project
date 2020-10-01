@@ -13,18 +13,14 @@ students = [
   {name: "Norman Bates", cohort: :november}
 ]
 
-
-# Method to print header of student list
-def print_header
-  puts "Students:"
-  puts "----------------"
-end
-
 # Method to print list of students
 def print_student_list(students)
+  puts "Students:"
+  puts "----------------"
   students.each do |student|
     puts "#{student[:name]}, Cohort: #{student[:cohort]}"
   end
+  puts "Overall, we have #{students.count} students"
 end
 
 # Method to print total number of students
@@ -43,9 +39,31 @@ def last_name(students)
 end
 
 
+#Main program loop
+while true
+  puts "1. View student list"
+  puts "2. Add new student"
+  puts "3. Delete student"
+  puts "4. Edit student details"
+  puts "8. Get student last names"
+  puts "9. Quit"
+  input = gets.chomp.to_i
+  case input
+  when 9
+    break
+  when 1
+    print_header
+    print_student_list(students)
+    print_footer(students)
+  when 2
 
-#Main program calls
-print_header
-print_student_list(students)
-print_footer(students)
-print_last_name(students)
+  when 3
+
+  when 4
+
+  when 8
+    print_last_name(students)
+  else
+    puts "Try again"
+  end
+end
