@@ -71,7 +71,7 @@ while true
   input = gets.chomp.to_i
   case input
   when 9
-    returnbreak
+    break
   when 1
     print_student_list(students)
   when 2
