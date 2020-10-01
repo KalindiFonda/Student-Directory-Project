@@ -42,6 +42,23 @@ def add_student(students)
   students.push({name: name, cohort: cohort})
 end
 
+def delete_student(students)
+  puts "Press num of student you want to delete"
+  students.each_with_index do |student, idx|
+    puts (idx + 1).to_s + ": " + student[:name]
+  end
+  student_idx = gets.chomp.to_i - 1
+  student_to_del = students[student_idx]
+  puts "Are you sure you want to delete: #{student_to_del[:name]}. Y/N"
+  confirm = gets.chomp
+  case confirm.upcase
+  when "Y"
+    students.delete(student_to_del)
+    "You deleted student #{student_to_del[:name]} from the database"
+  when "N"
+  end
+end
+
 def print_menu
   puts "1. View student list"
   puts "2. Add new student"
