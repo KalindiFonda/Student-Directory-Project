@@ -1,4 +1,5 @@
 # Declaring array of student hashes
+=begin
 students = [
   {name: "Dr. Hannibal Lecter", cohort: :november},
   {name: "Darth Vader", cohort: :november},
@@ -12,7 +13,8 @@ students = [
   {name: "Joffrey Baratheon", cohort: :november},
   {name: "Norman Bates", cohort: :november}
 ]
-
+=end
+students = []
 # Method to print list of students
 def print_student_list(students)
   puts "Students:"
@@ -40,17 +42,48 @@ def add_student(students)
   students.push({name: name, cohort: cohort})
 end
 
-#Main program loop
-while true
+def print_menu
   puts "1. View student list"
   puts "2. Add new student"
   puts "3. Delete student"
   puts "4. Edit student details"
   puts "8. Get student last names"
   puts "9. Quit"
+end
+
+# save students to file
+def save_students(students)
+  # open file for write
+  file = File.open("students.csv", "w+")
+  # iterate over students and save
+  students.each do |student|
+    student_data = [student[:name], student[:cohort]]
+    csv_line = student_data.join(",")
+    file.puts csv_line
+  end
+  file.close
+end
+
+# load students from file
+def load_students(students)
+  # open file for read
+  file = File.open("students.csv", "a+")
+  # iterate over lines and read student name and cohort
+  file.readlines.each do |line|
+    name, cohort = line.chomp.split(",")
+    students << {name: name, cohort: cohort.to_sym}
+  end
+  file.close
+end
+
+load_students(students)
+#Main program loop
+while true
+  print_menu
   input = gets.chomp.to_i
   case input
   when 9
+    save_students(students)
     break
   when 1
     print_student_list(students)
