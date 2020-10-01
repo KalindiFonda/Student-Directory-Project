@@ -40,7 +40,6 @@ def add_student(students)
   students.push({name: name, cohort: cohort})
 end
 
-
 #Main program loop
 while true
   puts "1. View student list"
@@ -54,9 +53,7 @@ while true
   when 9
     break
   when 1
-    print_header
     print_student_list(students)
-    print_footer(students)
   when 2
     add_student(students)
   when 3
