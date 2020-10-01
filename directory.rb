@@ -23,6 +23,14 @@ def print_student_list(students)
   puts "Overall, we have #{students.count} students"
 end
 
+def add_student(students)
+  puts "Enter name of student:"
+  name = gets.chomp
+  puts "Enter cohort of student:"
+  cohort = gets.chomp.to_sym
+  students.push({name: name, cohort: cohort})
+end
+
 #Main program loop
 while true
   puts "1. View student list"
@@ -36,10 +44,10 @@ while true
   elsif input == 1
     print_student_list(students)
   elsif input == 2
-
+    add_student(students)
   elsif input == 3
-
+    delete_student(students)
   elsif input == 4
-
+    edit_student(students)
   end
 end
