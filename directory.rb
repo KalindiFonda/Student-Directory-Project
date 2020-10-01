@@ -29,10 +29,23 @@ end
 
 # Method to print total number of students
 def print_footer(students)
-  print "Overall, we have #{students.count} students"
+  puts "Overall, we have #{students.count} students"
 end
+
+
+def last_name(students)
+  last_names = []
+  students.each do |student|
+    last_name = student[:name].split(" ")[-1]
+    last_names.push(last_name)
+  end
+  puts last_names
+end
+
+
 
 #Main program calls
 print_header
 print_student_list(students)
 print_footer(students)
+print_last_name(students)
