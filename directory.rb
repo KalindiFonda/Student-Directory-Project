@@ -93,6 +93,32 @@ def load_students(students)
   file.close
 end
 
+def edit_student(students)
+  student_index = 0
+  puts "Enter name of student to edit:"
+  input = gets.chomp
+  while true
+    puts "Enter data to edit (name or cohort):"
+    data_to_edit = gets.chomp
+    if data_to_edit == "name" || data_to_edit == "cohort"
+      break
+    end
+  end
+  puts "Input new #{data_to_edit}:"
+  new_data = gets.chomp
+  students.each_with_index do |student, index|
+    if student[:name] == input
+      student_index = index
+    end
+  end
+  case data_to_edit
+  when "name"
+    students[student_index][:name] = new_data
+  when "cohort"
+    students[student_index][:cohort] = new_data.to_sym
+  end
+end
+
 load_students(students)
 #Main program loop
 while true
@@ -110,6 +136,7 @@ while true
     delete_student(students)
   when 4
     edit_student(students)
+    save_students(students)
   when 8
     print_last_name(students)
   else
